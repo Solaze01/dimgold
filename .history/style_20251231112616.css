@@ -1,0 +1,329 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+    background-color: #b8b8b8;
+    color: #2d2d2d;
+    line-height: 1.5;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(184, 184, 184, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
+}
+
+.navbar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2d2d2d;
+}
+
+.logo svg {
+    color: #2d2d2d;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.6;
+}
+
+.contact-btn {
+    padding: 0.7rem 2rem;
+    background-color: transparent;
+    border: 1.5px solid #2d2d2d;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #2d2d2d;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Scrolling Background Text */
+.scroll-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.scroll-text {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+}
+
+.scroll-text span {
+    font-size: 16rem;
+    font-weight: 700;
+    padding: 0 1rem;
+}
+
+.scroll-text span:nth-child(odd) {
+    color: rgba(80, 80, 80, 0.2);
+}
+
+.scroll-text span:nth-child(even) {
+    color: rgba(60, 60, 60, 0.3);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Hero Main Content */
+.hero-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-main {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-img {
+    display: block;
+    height: 65vh;
+    max-height: 650px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Text Overlay on Image */
+.hero-info {
+    position: absolute;
+    top: 12%;
+    right: -10%;
+    display: flex;
+    gap: 1rem;
+    z-index: 20;
+}
+
+.arrow {
+    font-size: 2.5rem;
+    color: #2d2d2d;
+    line-height: 1;
+}
+
+.hero-text {
+    color: #2d2d2d;
+}
+
+.hero-text p {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.hero-text .username {
+    font-weight: 600;
+}
+
+/* Client Logos */
+.clients {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    background-color: rgba(100, 100, 100, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 1.8rem 3.5rem;
+    border-radius: 50px;
+    z-index: 100;
+}
+
+.client-item {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.client-item:hover {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .scroll-text span {
+        font-size: 12rem;
+    }
+    
+    .hero-img {
+        height: 55vh;
+        max-height: 550px;
+    }
+    
+    .hero-text p {
+        font-size: 2.5rem;
+    }
+    
+    .hero-info {
+        right: -8%;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 0 2rem;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .scroll-text span {
+        font-size: 8rem;
+    }
+    
+    .hero-wrapper {
+        padding: 0 2rem;
+    }
+    
+    .hero-img {
+        height: 50vh;
+        max-height: 500px;
+    }
+    
+    .hero-info {
+        position: static;
+        margin-top: 2rem;
+    }
+    
+    .hero-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-text p {
+        font-size: 2rem;
+    }
+    
+    .clients {
+        gap: 2rem;
+        padding: 1.5rem 2rem;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .contact-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .scroll-text span {
+        font-size: 5rem;
+    }
+    
+    .hero-img {
+        height: 45vh;
+    }
+    
+    .hero-text p {
+        font-size: 1.6rem;
+    }
+    
+    .arrow {
+        font-size: 2rem;
+    }
+    
+    .clients {
+        bottom: 1.5rem;
+        gap: 1.5rem;
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .client-item {
+        font-size: 0.75rem;
+    }
+}

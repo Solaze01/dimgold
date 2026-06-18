@@ -621,7 +621,7 @@ body {
 
 .about-works-testimonials-section .works-testimonials-head,
 .about-works-testimonials-section .works-testimonials-grid {
-    width: min(100%, var(--page-max-width));
+    width: min(100%, var(--about-content-width));
     margin-left: auto;
     margin-right: auto;
 }
@@ -1174,6 +1174,7 @@ body {
 /* About Page */
 .about-page {
     background: #f7f5f1;
+    --about-content-width: 1420px;
 }
 
 .about-hero {
@@ -1182,8 +1183,12 @@ body {
 }
 
 .about-hero-inner {
-    width: min(100%, var(--page-max-width));
+    width: min(100%, var(--about-content-width));
     margin: 0 auto;
+}
+
+.about-hero-inner > * {
+    width: 100%;
 }
 
 .about-hero h1 {
@@ -1198,17 +1203,17 @@ body {
 
 .about-hero-card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 28px;
     overflow: visible;
-    min-height: 530px;
-    padding-top: 5.9rem;
+    min-height: 730px;
+    padding-top: 9.2rem;
 }
 
 .about-hero-card::before {
     content: "";
     position: absolute;
-    inset: 5.9rem 0 0;
-    border-radius: 20px;
+    inset: 9.2rem 0 0;
+    border-radius: 28px;
     background: #7f9fad;
     z-index: 0;
 }
@@ -1218,7 +1223,7 @@ body {
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
-    width: min(88%, 920px);
+    width: min(96%, 1180px);
     height: auto;
     z-index: 1;
 }
@@ -1235,8 +1240,8 @@ body {
 
 .about-hero-overlay {
     position: absolute;
-    left: 4.2rem;
-    top: 12rem;
+    left: 5rem;
+    top: 14rem;
     color: white;
     display: flex;
     flex-direction: column;
@@ -1257,12 +1262,13 @@ body {
 }
 
 .about-story-inner {
-    width: min(100%, var(--page-max-width));
+    width: min(100%, var(--about-content-width));
     margin: 0 auto;
 }
 
 .about-story-copy {
-    max-width: 1040px;
+    width: 100%;
+    max-width: none;
 }
 
 .about-story-copy h2 {
@@ -1275,7 +1281,7 @@ body {
 }
 
 .about-story-copy p {
-    max-width: 1000px;
+    max-width: none;
     font-size: 1.12rem;
     line-height: 1.95;
     color: var(--text-muted-strong);
@@ -1287,9 +1293,19 @@ body {
 
 .about-services-section {
     padding-top: 0;
-    width: min(100%, var(--page-max-width));
+    width: auto;
     margin: 0 auto;
     transform: none;
+}
+
+.about-page .about-services-section > * {
+    width: min(100%, var(--about-content-width));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-page .cta-panel {
+    max-width: var(--about-content-width);
 }
 
 .about-services-head {
@@ -1319,12 +1335,16 @@ body {
 }
 
 .why-design-inner {
-    width: min(100%, var(--page-max-width));
+    width: min(100%, var(--about-content-width));
     margin: 0 auto;
     display: grid;
     grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 0.92fr);
     align-items: center;
     gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.why-design-copy {
+    width: 100%;
 }
 
 .why-design-copy h2 {
@@ -1337,14 +1357,14 @@ body {
 }
 
 .why-design-copy p {
-    max-width: 470px;
+    max-width: 620px;
     font-size: 1.08rem;
     line-height: 1.95;
     color: var(--text-muted-strong);
 }
 
 .why-design-frame {
-    width: min(100%, 420px);
+    width: min(100%, 520px);
     aspect-ratio: 1 / 1;
     justify-self: end;
     border-radius: 18px;
@@ -1357,12 +1377,16 @@ body {
 }
 
 .about-grid-inner {
-    width: min(100%, var(--page-max-width));
+    width: min(100%, var(--about-content-width));
     margin: 0 auto;
     display: grid;
     grid-template-columns: minmax(320px, 0.98fr) minmax(320px, 0.92fr);
     align-items: center;
     gap: clamp(2.5rem, 6vw, 6.5rem);
+}
+
+.about-grid-copy {
+    width: 100%;
 }
 
 .about-grid-section-right {
@@ -1371,7 +1395,7 @@ body {
 }
 
 .about-grid-frames {
-    width: min(100%, 430px);
+    width: min(100%, 520px);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
@@ -1748,22 +1772,23 @@ body {
     }
 
     .about-hero-card {
-        min-height: 380px;
-        padding-top: 5.3rem;
+        min-height: 438px;
+        padding-top: 5.9rem;
     }
 
     .about-hero-card::before {
-        inset: 5.3rem 0 0;
+        inset: 5.9rem 0 0;
     }
 
     .about-hero-figure {
         transform: translateX(-50%);
-        width: min(96%, 470px);
+        bottom: 0;
+        width: min(100%, 600px);
     }
 
     .about-hero-overlay {
         left: 1.5rem;
-        top: 5.8rem;
+        top: 6.4rem;
     }
 
     .about-hero-overlay p {

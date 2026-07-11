@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coming soon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="min-height:80vh; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center; padding:2rem;">
+      <h1 id="cs-title" style="font-size:2.4rem; margin-bottom:1rem;">Coming soon...</h1>
+      <p id="cs-sub" style="color:var(--text-muted); margin-bottom:1.25rem; display:none;">This project page is being prepared. Check back soon.</p>
+      <a class="work-view" id="cs-back" href="selected-works.html" style="display:inline-block; padding:0.9rem 1.4rem; border-radius:999px; text-decoration:none;">Back to works</a>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const slug = (params.get('p') || '').toLowerCase();
+      const map = {
+        'jollofspace': 'Jollofspace',
+        'coocredit': 'CooCredit',
+        'stakesmat': 'Stakesmat AI',
+        'stakesmart': 'Stakesmart'
+      };
+      if(slug && map[slug]){
+        document.getElementById('cs-title').textContent = map[slug] + ' — Coming soon...';
+        document.getElementById('cs-sub').style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>

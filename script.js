@@ -1,5 +1,7 @@
 const revealGroups = [
-    ".header > *",
+    ".header-brand",
+    ".header .logo",
+    ".header .menu-toggle",
     ".hero-image",
     ".hero-overlay",
     ".companies",
@@ -85,6 +87,7 @@ const closeMenu = () => {
         return;
     }
 
+    console.debug && console.debug('closeMenu invoked');
     document.body.classList.remove("nav-open");
     nav.classList.remove("is-open");
     navBackdrop?.classList.remove("is-visible");
@@ -93,16 +96,23 @@ const closeMenu = () => {
 
 window.closeMobileNav = closeMenu;
 
+// expose openMobileNav for inline fallbacks
+window.openMobileNav = null;
+
 const openMenu = () => {
     if (!menuToggle || !nav) {
         return;
     }
+
+    console.debug && console.debug('openMenu invoked');
 
     document.body.classList.add("nav-open");
     nav.classList.add("is-open");
     navBackdrop?.classList.add("is-visible");
     menuToggle.setAttribute("aria-expanded", "true");
 };
+
+window.openMobileNav = openMenu;
 
 if (menuToggle && nav) {
     menuToggle.addEventListener("click", () => {
@@ -121,6 +131,7 @@ if (menuToggle && nav) {
     });
     ["click", "touchend", "pointerup"].forEach((eventName) => {
         navClose?.addEventListener(eventName, (event) => {
+            console.debug && console.debug('navClose handler', eventName, event.target);
             if (eventName !== "click") {
                 event.preventDefault();
             }
@@ -158,6 +169,26 @@ if (menuToggle && nav) {
         }
     });
 }
+
+// Safety: delegated listeners to ensure any Back/close controls call closeMenu
+document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.nav-close, [data-close-nav]');
+    if (trigger) {
+        console.debug && console.debug('delegated click', e.target, trigger);
+        try { e.preventDefault(); } catch (err) {}
+        closeMenu();
+    }
+}, { capture: true });
+
+document.addEventListener('touchend', (e) => {
+    const trigger = e.target.closest('.nav-close, [data-close-nav]');
+    if (trigger) {
+        console.debug && console.debug('delegated touchend', e.target, trigger);
+        e.preventDefault();
+        closeMenu();
+    }
+}, { passive: false, capture: true });
+
 
 if (!prefersReducedMotion) {
     revealGroups.forEach((selector) => {

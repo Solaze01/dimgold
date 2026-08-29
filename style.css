@@ -1288,6 +1288,126 @@ body {
     border-radius: 18px;
 }
 
+/* Jollof Space case study */
+.jollofspace-page {
+    background: #1c1c1c;
+    --page-max-width: 1280px;
+    --page-gutter: clamp(5.5rem, 9vw, 11rem);
+}
+
+.jollofspace-page .container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    background: #f8f6f2;
+}
+
+.jollofspace-page .project-page-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max-width));
+    z-index: 2;
+}
+
+.jollofspace-page .jollofspace-overview {
+    padding: 5.2rem var(--page-gutter) 4.8rem;
+    background: #f3f3f1;
+}
+
+.jollofspace-page .jollofspace-overview .project-overview-inner {
+    width: min(100%, 1280px);
+    margin: 0 auto;
+}
+
+.project-kicker {
+    margin-bottom: 1.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    color: var(--text-subtle);
+}
+
+.jollofspace-overview .project-overview-inner h1 {
+    max-width: 1200px;
+    margin-bottom: 3.4rem;
+    font-size: clamp(2.4rem, 4vw, 5.2rem);
+    line-height: 0.96;
+    letter-spacing: -0.065em;
+}
+
+.jollofspace-overview .project-overview-grid {
+    display: grid;
+    grid-template-columns: minmax(270px, 1fr) minmax(300px, 1fr);
+    column-gap: 5.5rem;
+    row-gap: 2.5rem;
+    max-width: 1130px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.jollofspace-overview .project-overview-column {
+    max-width: 430px;
+}
+
+.jollofspace-overview .project-overview-column:nth-child(2),
+.jollofspace-overview .project-overview-column:nth-child(4) {
+    margin-left: 4.5rem;
+}
+
+.jollofspace-overview .project-label {
+    margin: 0 0 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+}
+
+.jollofspace-overview .project-copy {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.08vw, 1.12rem);
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+}
+
+.project-image-stack {
+    width: 100%;
+    line-height: 0;
+    font-size: 0;
+}
+
+.project-opening-visual {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.project-opening-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-image-stack img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 0;
+    border: 0;
+    object-fit: cover;
+}
+
+.jollofspace-page .footer-top {
+    grid-template-columns: auto 1fr;
+}
+
+.jollofspace-page .footer-links {
+    justify-self: end;
+}
+
 /* About Page */
 .about-page {
     background: #f7f5f1;
@@ -1817,7 +1937,11 @@ body {
         display: inline-flex;
         flex-shrink: 0;
         position: relative;
-        z-index: 260;
+        z-index: 10070;
+    }
+    .menu-toggle {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
     }
 
     .nav {
@@ -1836,12 +1960,29 @@ body {
         align-items: stretch;
         gap: 0.75rem;
         transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        z-index: 240;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, visibility 0.25s ease;
+        z-index: 10050; /* raised to sit above header */
+    }
+    .nav {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    .nav.reveal:not(.is-open),
+    .nav:not(.is-open) {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
     }
 
     .nav.is-open {
         transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
     }
 
     body.nav-open .menu-toggle {
@@ -1857,6 +1998,15 @@ body {
 
     .nav-close {
         display: inline-flex;
+        cursor: pointer;
+        z-index: 10080;
+        padding: 0.9rem 0.75rem; /* larger hit area */
+        background: transparent;
+        border: 0;
+        align-items: center;
+        gap: 0.5rem;
+        pointer-events: auto;
+        border-radius: 8px;
     }
 
     .nav-backdrop {
@@ -1868,7 +2018,10 @@ body {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
-        z-index: 230;
+        z-index: 10040; /* below nav but above content */
+    }
+    .nav-backdrop {
+        touch-action: manipulation;
     }
 
     .nav-backdrop.is-visible {
